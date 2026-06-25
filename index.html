@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mô Phỏng Hệ Mặt Trời 3D Vật Lý Kepler</title>
+    <title>Mô Phỏng Hệ Mặt Trời 3D - D.T.Chánh</title>
     <style>
         :root {
             --bg-color: #020617;
@@ -58,7 +59,7 @@
             white-space: nowrap;
             pointer-events: none;
             display: none;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); 
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
         .planet-label.sun-label {
@@ -197,7 +198,7 @@
             justify-content: space-between;
             margin-bottom: 8px;
             font-size: 0.9rem;
-            border-bottom: 1px dotted rgba(255,255,255,0.1);
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
             padding-bottom: 4px;
         }
 
@@ -222,6 +223,7 @@
             margin-bottom: 0;
             padding: 0 5px;
         }
+
         .close-btn:hover {
             color: #fff;
         }
@@ -241,17 +243,18 @@
         }
     </style>
 </head>
+
 <body>
 
     <div id="container3d"></div>
-    
+
     <!-- Vùng phủ chứa các nhãn HTML -->
     <div id="labels-container"></div>
 
     <!-- Panel Điều khiển -->
     <div id="control-panel" class="overlay">
         <h1>Hệ Mặt Trời 3D (Kepler)</h1>
-        
+
         <div class="control-group">
             <label for="planet-select">Chọn nhanh hành tinh</label>
             <select id="planet-select">
@@ -301,7 +304,8 @@
     </div>
 
     <div id="instructions" class="overlay">
-        Giữ chuột trái để Xoay 3D | Chuột phải để Di chuyển | Cuộn chuột để Phóng to/Thu nhỏ | Nhấp vào hành tinh để chọn
+        Giữ chuột trái để Xoay 3D | Chuột phải để Di chuyển | Cuộn chuột để Phóng to/Thu nhỏ | Nhấp vào hành tinh để
+        chọn
     </div>
 
     <!-- Nhúng thư viện Three.js và OrbitControls điều hướng -->
@@ -312,7 +316,7 @@
         const container = document.getElementById('container3d');
         const labelsContainer = document.getElementById('labels-container');
         const scene = new THREE.Scene();
-        
+
         scene.fog = new THREE.FogExp2(0x020617, 0.001);
 
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -342,10 +346,10 @@
         const starsCount = 2000;
         const starPositions = new Float32Array(starsCount * 3);
 
-        for(let i = 0; i < starsCount * 3; i += 3) {
+        for (let i = 0; i < starsCount * 3; i += 3) {
             starPositions[i] = (Math.random() - 0.5) * 1200;
-            starPositions[i+1] = (Math.random() - 0.5) * 1200;
-            starPositions[i+2] = (Math.random() - 0.5) * 1200;
+            starPositions[i + 1] = (Math.random() - 0.5) * 1200;
+            starPositions[i + 2] = (Math.random() - 0.5) * 1200;
         }
 
         starsGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
@@ -646,7 +650,7 @@
 
         // Điền danh sách chọn nhanh
         const planetSelect = document.getElementById('planet-select');
-        
+
         const sunOption = document.createElement('option');
         sunOption.value = "sun";
         sunOption.text = sunData.name;
@@ -680,7 +684,7 @@
 
             if (intersects.length > 0) {
                 const clickedMesh = intersects[0].object;
-                
+
                 if (clickedMesh === sunMesh) {
                     showInfo(sunData);
                 } else {
@@ -788,17 +792,17 @@
 
         function updateLabelPosition(mesh, labelEl, offsetHeight) {
             tempV.setFromMatrixPosition(mesh.matrixWorld);
-            tempV.y += offsetHeight; 
-            
+            tempV.y += offsetHeight;
+
             tempV.project(camera);
 
             if (tempV.z > 1) {
-                labelEl.style.display = 'none'; 
+                labelEl.style.display = 'none';
             } else {
-                labelEl.style.display = 'block'; 
+                labelEl.style.display = 'block';
                 const x = (tempV.x * 0.5 + 0.5) * window.innerWidth;
                 const y = (tempV.y * -0.5 + 0.5) * window.innerHeight;
-                
+
                 labelEl.style.left = `${x}px`;
                 labelEl.style.top = `${y}px`;
             }
@@ -819,7 +823,7 @@
                     planet.meanAnomaly += planet.speed * speedMultiplier * 0.5;
                     planet.mesh.rotation.y += 0.01;
                 }
-                
+
                 // Giải phương trình Kepler: Giải để tìm Dị thường lập tâm (Eccentric Anomaly - E)
                 const E = solveKepler(planet.meanAnomaly, planet.eccentricity);
 
@@ -837,7 +841,7 @@
                 // Cập nhật vị trí Mặt Trăng
                 if (planet.moon) {
                     planet.moon.group.position.copy(planet.mesh.position);
-                    
+
                     if (isRunning) {
                         planet.moon.angle += planet.moon.speed * speedMultiplier * 0.5;
                         planet.moon.mesh.rotation.y += 0.005;
@@ -869,4 +873,5 @@
         animate();
     </script>
 </body>
+
 </html>
