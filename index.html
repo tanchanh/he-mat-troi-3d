@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +21,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             overflow: hidden;
@@ -59,7 +58,7 @@
             white-space: nowrap;
             pointer-events: none;
             display: none;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); 
         }
 
         .planet-label.sun-label {
@@ -80,7 +79,7 @@
             left: 20px;
             width: 320px;
             background: var(--panel-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
             pointer-events: auto;
@@ -94,7 +93,7 @@
             right: 20px;
             width: 340px;
             background: var(--panel-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
             pointer-events: auto;
@@ -111,14 +110,32 @@
         }
 
         h1 {
-            font-size: 1.25rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
             color: #fff;
-            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        /* Tên tác giả dưới tiêu đề h1 */
+        .author {
+            font-style: normal;
+            font-size: 1.2rem;
+            text-align: right;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
         .control-group {
@@ -137,7 +154,7 @@
             padding: 8px 12px;
             background-color: #1e293b;
             color: var(--text-color);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 6px;
             cursor: pointer;
             outline: none;
@@ -167,7 +184,7 @@
             padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: bold;
             transition: background 0.2s;
             width: 100%;
             margin-bottom: 8px;
@@ -179,7 +196,7 @@
 
         button.secondary {
             background-color: #334155;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
         }
 
         button.secondary:hover {
@@ -190,7 +207,7 @@
             font-size: 1.4rem;
             color: var(--accent-color);
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: bold;
         }
 
         .info-row {
@@ -198,7 +215,7 @@
             justify-content: space-between;
             margin-bottom: 8px;
             font-size: 0.9rem;
-            border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+            border-bottom: 1px dotted rgba(255,255,255,0.1);
             padding-bottom: 4px;
         }
 
@@ -223,7 +240,6 @@
             margin-bottom: 0;
             padding: 0 5px;
         }
-
         .close-btn:hover {
             color: #fff;
         }
@@ -238,23 +254,23 @@
             font-size: 0.8rem;
             pointer-events: none;
             color: #94a3b8;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             backdrop-filter: blur(4px);
         }
     </style>
 </head>
-
 <body>
 
     <div id="container3d"></div>
-
+    
     <!-- Vùng phủ chứa các nhãn HTML -->
     <div id="labels-container"></div>
 
     <!-- Panel Điều khiển -->
     <div id="control-panel" class="overlay">
         <h1>Hệ Mặt Trời 3D (Kepler)</h1>
-
+        <div class="author">D.T.Chánh</div>
+        
         <div class="control-group">
             <label for="planet-select">Chọn nhanh hành tinh</label>
             <select id="planet-select">
@@ -282,7 +298,7 @@
 
     <!-- Panel Thông tin hành tinh -->
     <div id="info-panel" class="overlay">
-        <h1>
+        <h1 style="text-align: left; font-size: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">
             <span>Thông tin chi tiết</span>
             <button class="close-btn" id="btn-close-info">&times;</button>
         </h1>
@@ -304,8 +320,7 @@
     </div>
 
     <div id="instructions" class="overlay">
-        Giữ chuột trái để Xoay 3D | Chuột phải để Di chuyển | Cuộn chuột để Phóng to/Thu nhỏ | Nhấp vào hành tinh để
-        chọn
+        Giữ chuột trái để Xoay 3D | Chuột phải để Di chuyển | Cuộn chuột để Phóng to/Thu nhỏ | Nhấp vào hành tinh để chọn
     </div>
 
     <!-- Nhúng thư viện Three.js và OrbitControls điều hướng -->
@@ -316,7 +331,7 @@
         const container = document.getElementById('container3d');
         const labelsContainer = document.getElementById('labels-container');
         const scene = new THREE.Scene();
-
+        
         scene.fog = new THREE.FogExp2(0x020617, 0.001);
 
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -346,10 +361,10 @@
         const starsCount = 2000;
         const starPositions = new Float32Array(starsCount * 3);
 
-        for (let i = 0; i < starsCount * 3; i += 3) {
+        for(let i = 0; i < starsCount * 3; i += 3) {
             starPositions[i] = (Math.random() - 0.5) * 1200;
-            starPositions[i + 1] = (Math.random() - 0.5) * 1200;
-            starPositions[i + 2] = (Math.random() - 0.5) * 1200;
+            starPositions[i+1] = (Math.random() - 0.5) * 1200;
+            starPositions[i+2] = (Math.random() - 0.5) * 1200;
         }
 
         starsGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
@@ -375,10 +390,9 @@
             return div;
         }
 
-        // --- THUẬT TOÁN GIẢI PHƯƠNG TRÌNH KEPLER SỐ TRỊ (Newton-Raphson) ---
-        // Giải phương trình: M = E - e * sin(E) để tìm dị thường lập tâm E từ dị thường trung bình M
+        // --- THUẬT TOÁN GIẢI PHƯƠNG TRÌNH KEPLER SỐ TRÌ (Newton-Raphson) ---
         function solveKepler(M, e) {
-            let E = M; // Dự đoán ban đầu
+            let E = M; 
             const tolerance = 0.000001;
             for (let i = 0; i < 100; i++) {
                 const deltaE = (M - (E - e * Math.sin(E))) / (1 - e * Math.cos(E));
@@ -398,18 +412,17 @@
             info: "Ngôi sao ở trung tâm Hệ Mặt Trời, chiếm khoảng 99.86% khối lượng của toàn hệ thống và tỏa nguồn năng lượng lớn nuôi dưỡng Trái Đất."
         };
 
-        // distance = bán trục lớn (a). eccentricity = độ lệch tâm (e)
         const planetsData = [
             {
                 id: "mercury",
-                name: "Sao Thủy (Mercury)",
-                displayName: "Sao Thủy",
+                name: "Sao Thuỷ (Mercury)",
+                displayName: "Sao Thuỷ",
                 color: 0x94a3b8,
                 radius: 1.2,
-                distance: 28,     // Bán trục lớn a
-                eccentricity: 0.21, // Độ lệch tâm e (Sao Thủy lệch nhiều nhất)
-                speed: 0.03,        // Tần số chuyển động trung bình n
-                meanAnomaly: Math.random() * Math.PI * 2, // M
+                distance: 28,     
+                eccentricity: 0.21, 
+                speed: 0.03,        
+                meanAnomaly: Math.random() * Math.PI * 2, 
                 inclination: 0.05,
                 period: "88 ngày",
                 physDistance: "0.39 AU",
@@ -423,7 +436,7 @@
                 color: "#eab308",
                 radius: 2.2,
                 distance: 42,
-                eccentricity: 0.05, // Thực tế rất tròn, chỉnh 0.05 để có chút elip trực quan
+                eccentricity: 0.05, 
                 speed: 0.015,
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.03,
@@ -439,7 +452,7 @@
                 color: 0x2563eb,
                 radius: 2.4,
                 distance: 58,
-                eccentricity: 0.09, // Lệch tâm nhẹ
+                eccentricity: 0.09, 
                 speed: 0.01,
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0,
@@ -450,19 +463,19 @@
             },
             {
                 id: "mars",
-                name: "Sao Hỏa (Mars)",
-                displayName: "Sao Hỏa",
+                name: "Sao Hoả (Mars)",
+                displayName: "Sao Hoả",
                 color: 0xef4444,
                 radius: 1.8,
                 distance: 72,
-                eccentricity: 0.18, // Lệch tâm rõ rệt
+                eccentricity: 0.18, 
                 speed: 0.008,
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.02,
                 period: "687 ngày",
                 physDistance: "1.52 AU",
                 diameter: "6,779 km",
-                info: "Hành tinh Đỏ giàu oxit sắt. Quỹ đạo hình elip dẹt rõ rệt khiến thời tiết và áp suất bầu khí quyển trên Sao Hỏa biến đổi cực kỳ gay gắt giữa các mùa."
+                info: "Hành tinh Đỏ giàu oxit sắt. Quỹ đạo hình elip dẹt rõ rệt khiến thời tiết và áp suất bầu khí quyển trên Sao Hoả biến đổi cực kỳ gay gắt giữa các mùa."
             },
             {
                 id: "jupiter",
@@ -533,7 +546,7 @@
 
         // --- KHỞI TẠO ĐỐI TƯỢNG 3D ---
 
-        // 1. Khởi tạo Mặt Trời (Đặt cố định tại gốc tọa độ 0,0,0 - Tiêu điểm chung của các elip)
+        // 1. Khởi tạo Mặt Trời
         const sunGeometry = new THREE.SphereGeometry(sunData.radius, 32, 32);
         const sunMaterial = new THREE.MeshBasicMaterial({ color: sunData.color });
         const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
@@ -562,7 +575,7 @@
 
             // Bán trục nhỏ (b) của elip: b = a * sqrt(1 - e^2)
             const b = planet.distance * Math.sqrt(1 - planet.eccentricity ** 2);
-            // Khoảng cách dịch tâm (c): c = a * e (Khoảng cách từ tâm elip đến tiêu điểm chứa Mặt Trời)
+            // Khoảng cách dịch tâm (c): c = a * e
             const c = planet.distance * planet.eccentricity;
 
             // Vẽ quỹ đạo elip lệch tâm
@@ -570,7 +583,6 @@
             const points = [];
             for (let i = 0; i <= 100; i++) {
                 const theta = (i / 100) * Math.PI * 2;
-                // Dịch tâm elip sang trái một khoảng là c để tiêu điểm trùng khớp với vị trí Mặt Trời (0,0,0)
                 points.push(new THREE.Vector3(planet.distance * Math.cos(theta) - c, 0, b * Math.sin(theta)));
             }
             orbitPath.setFromPoints(points);
@@ -650,7 +662,7 @@
 
         // Điền danh sách chọn nhanh
         const planetSelect = document.getElementById('planet-select');
-
+        
         const sunOption = document.createElement('option');
         sunOption.value = "sun";
         sunOption.text = sunData.name;
@@ -663,7 +675,7 @@
             planetSelect.appendChild(option);
         });
 
-        // --- XỬ LÝ RAYCASTER ĐỂ CLICK CHUỘT ---
+        // --- XỬ LÝ RAYCASTER ĐỂ CLICK CHUỘT CHỌN HÀNH TINH ---
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
 
@@ -684,7 +696,7 @@
 
             if (intersects.length > 0) {
                 const clickedMesh = intersects[0].object;
-
+                
                 if (clickedMesh === sunMesh) {
                     showInfo(sunData);
                 } else {
@@ -792,17 +804,17 @@
 
         function updateLabelPosition(mesh, labelEl, offsetHeight) {
             tempV.setFromMatrixPosition(mesh.matrixWorld);
-            tempV.y += offsetHeight;
-
+            tempV.y += offsetHeight; 
+            
             tempV.project(camera);
 
             if (tempV.z > 1) {
-                labelEl.style.display = 'none';
+                labelEl.style.display = 'none'; 
             } else {
-                labelEl.style.display = 'block';
+                labelEl.style.display = 'block'; 
                 const x = (tempV.x * 0.5 + 0.5) * window.innerWidth;
                 const y = (tempV.y * -0.5 + 0.5) * window.innerHeight;
-
+                
                 labelEl.style.left = `${x}px`;
                 labelEl.style.top = `${y}px`;
             }
@@ -813,25 +825,24 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // Cập nhật nhãn Mặt Trời
+            // Cập nhật nhãn Mặt Trời (giảm lệch đứng)
             updateLabelPosition(sunMesh, sunData.labelEl, sunData.radius + 2.0);
 
             // Cập nhật vị trí các hành tinh theo ĐỘNG LỰC HỌC KEPLER
             planetsData.forEach(planet => {
                 if (isRunning) {
-                    // Dị thường trung bình (Mean Anomaly) tăng tuyến tính đều theo thời gian
                     planet.meanAnomaly += planet.speed * speedMultiplier * 0.5;
                     planet.mesh.rotation.y += 0.01;
                 }
-
-                // Giải phương trình Kepler: Giải để tìm Dị thường lập tâm (Eccentric Anomaly - E)
+                
+                // Giải phương trình Kepler tìm E
                 const E = solveKepler(planet.meanAnomaly, planet.eccentricity);
 
-                // Tính tọa độ cục bộ trên mặt phẳng Elip dựa theo E
+                // Tọa độ elip gốc
                 const xLocal = planet.distance * Math.cos(E);
                 const zLocal = planet.semiMinorAxis * Math.sin(E);
 
-                // Chuyển về tọa độ quỹ đạo thực tế có Mặt Trời làm tiêu điểm (Dịch tâm elip một khoảng là focusShift)
+                // Chuyển dịch tâm về tiêu điểm Mặt Trời (0,0,0)
                 planet.mesh.position.x = xLocal - planet.focusShift;
                 planet.mesh.position.z = zLocal;
 
@@ -841,7 +852,7 @@
                 // Cập nhật vị trí Mặt Trăng
                 if (planet.moon) {
                     planet.moon.group.position.copy(planet.mesh.position);
-
+                    
                     if (isRunning) {
                         planet.moon.angle += planet.moon.speed * speedMultiplier * 0.5;
                         planet.moon.mesh.rotation.y += 0.005;
@@ -873,5 +884,4 @@
         animate();
     </script>
 </body>
-
 </html>
