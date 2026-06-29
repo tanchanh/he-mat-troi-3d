@@ -35,7 +35,6 @@
             display: block;
         }
 
-        /* Khung chứa các nhãn tên HTML phủ lên trên Canvas */
         #labels-container {
             position: absolute;
             top: 0;
@@ -47,7 +46,6 @@
             z-index: 5;
         }
 
-        /* Định dạng nhãn tên hành tinh: Cỡ 1rem, chữ normal, không nền */
         .planet-label {
             position: absolute;
             font-size: 1rem;
@@ -66,48 +64,44 @@
             text-shadow: 0 2px 5px rgba(251, 146, 60, 0.4), 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
-        /* Định dạng nhãn tên của vệ tinh con (nhỏ hơn và có màu xám nhạt) */
         .planet-label.moon-label {
             font-size: 0.8rem;
             color: #94a3b8;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
 
-        /* Giao diện Overlay điều khiển */
         .overlay {
             position: absolute;
             z-index: 10;
             pointer-events: none;
         }
 
-        /* Panel điều khiển bên trái */
         #control-panel {
-            top: 20px;
-            left: 20px;
-            width: 320px;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 20rem;
             background: var(--panel-bg);
             border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
             pointer-events: auto;
             backdrop-filter: blur(12px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
 
-        /* Panel thông tin bên phải */
         #info-panel {
-            top: 20px;
-            right: 20px;
-            width: 340px;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 21.25rem;
             background: var(--panel-bg);
             border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
             pointer-events: auto;
             backdrop-filter: blur(12px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-            transform: translateX(380px);
+            transform: translateX(25rem);
             opacity: 0;
         }
 
@@ -119,43 +113,43 @@
         h1 {
             font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 0.3rem;
             color: #fff;
             text-align: center;
         }
 
-        /* Tên tác giả dưới tiêu đề h1 */
         .author {
             font-style: normal;
             font-size: 1.2rem;
             text-align: right;
             color: #94a3b8;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
+            padding-bottom: 0.5rem;
         }
 
         .control-group {
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
         }
 
         label {
             display: block;
             font-size: 0.85rem;
-            margin-bottom: 5px;
+            margin-bottom: 0.35rem;
             color: #94a3b8;
         }
 
         select {
             width: 100%;
-            padding: 8px 12px;
+            padding: 0.5rem 0.75rem;
             background-color: #1e293b;
             color: var(--text-color);
             border: 2px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 0.375rem;
             cursor: pointer;
             outline: none;
             font-size: 0.9rem;
+            font-family: inherit;
         }
 
         select:focus {
@@ -165,7 +159,7 @@
         .slider-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.625rem;
         }
 
         input[type="range"] {
@@ -178,13 +172,15 @@
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
             cursor: pointer;
             font-weight: bold;
             transition: background 0.2s;
             width: 100%;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
+            font-family: inherit;
+            font-size: 0.95rem;
         }
 
         button:hover {
@@ -203,17 +199,17 @@
         #planet-name {
             font-size: 1.4rem;
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
             font-weight: bold;
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
             font-size: 0.9rem;
-            border-bottom: 1px dotted rgba(255,255,255,0.1);
-            padding-bottom: 4px;
+            border-bottom: 2px dotted rgba(255,255,255,0.2);
+            padding-bottom: 0.25rem;
         }
 
         .info-label {
@@ -223,7 +219,7 @@
         #planet-desc {
             font-size: 0.88rem;
             line-height: 1.45;
-            margin-top: 12px;
+            margin-top: 0.75rem;
             color: #cbd5e1;
         }
 
@@ -232,27 +228,69 @@
             border: none;
             color: #94a3b8;
             cursor: pointer;
-            font-size: 1.2rem;
-            width: auto;
+            width: 1.8rem;
+            height: 1.8rem;
             margin-bottom: 0;
             padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
+        
+        .close-btn svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+
         .close-btn:hover {
-            color: #fff;
+            color: #ef4444;
+            background: transparent;
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         #instructions {
-            bottom: 20px;
+            bottom: 1.25rem;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(15, 23, 42, 0.6);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 1.25rem;
             font-size: 0.8rem;
             pointer-events: none;
             color: #94a3b8;
             border: 2px solid var(--border-color);
             backdrop-filter: blur(4px);
+            text-align: center;
+            width: 90%;
+            max-width: 40rem;
+        }
+
+        /* Tương thích giao diện điện thoại */
+        @media (max-width: 48rem) {
+            #control-panel {
+                width: calc(100% - 2.5rem);
+                max-height: 40vh;
+                overflow-y: auto;
+            }
+            #info-panel {
+                top: auto;
+                bottom: 5rem;
+                right: 1.25rem;
+                width: calc(100% - 2.5rem);
+                transform: translateY(120%);
+            }
+            #info-panel.active {
+                transform: translateY(0);
+            }
+            #instructions {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -261,7 +299,6 @@
     <div id="container3d"></div>
     <div id="labels-container"></div>
 
-    <!-- Panel Điều khiển bên trái -->
     <div id="control-panel" class="overlay">
         <h1>Hệ Mặt Trời 3D (Kepler)</h1>
         <div class="author">D.T.Chánh</div>
@@ -272,7 +309,7 @@
                 <option value="">-- Chọn hành tinh --</option>
             </select>
             
-            <button id="btn-track" class="secondary" style="margin-top: 10px; display: none;">Theo dõi hành tinh này</button>
+            <button id="btn-track" class="secondary" style="margin-top: 0.625rem; display: none;">Theo dõi hành tinh này</button>
         </div>
 
         <div class="control-group">
@@ -281,23 +318,26 @@
         </div>
 
         <div class="control-group">
-            <label for="speed-slider">Tốc độ mô phỏng (<span id="speed-val">1.0</span>x)</label>
+            <label for="speed-slider">Tốc độ mô phỏng (<span id="speed-val">1,0</span>x)</label>
             <div class="slider-container">
                 <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1">
             </div>
         </div>
 
-        <div class="control-group" style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
-            <input type="checkbox" id="chk-orbits" checked style="cursor: pointer;">
+        <div class="control-group" style="display: flex; gap: 0.625rem; align-items: center; margin-top: 0.625rem;">
+            <input type="checkbox" id="chk-orbits" checked style="cursor: pointer; width: 1.25rem; height: 1.25rem;">
             <label for="chk-orbits" style="margin-bottom: 0; cursor: pointer;">Hiển thị đường quỹ đạo</label>
         </div>
     </div>
 
-    <!-- Panel Thông tin hành tinh bên phải -->
     <div id="info-panel" class="overlay">
-        <h1 style="text-align: left; font-size: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">
+        <h1 class="info-header" style="text-align: left; font-size: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">
             <span>Thông tin chi tiết</span>
-            <button class="close-btn" id="btn-close-info">&times;</button>
+            <button class="close-btn" id="btn-close-info" aria-label="Đóng">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+                </svg>
+            </button>
         </h1>
         <div id="planet-name">Trái Đất</div>
         <div class="info-row">
@@ -310,13 +350,13 @@
         </div>
         <div class="info-row">
             <span class="info-label">Đường kính:</span>
-            <span id="info-diameter">12,742 km</span>
+            <span id="info-diameter">12.742 km</span>
         </div>
         <div id="planet-desc">Mô tả...</div>
     </div>
 
     <div id="instructions" class="overlay">
-        Giữ chuột trái để Xoay 3D | Chuột phải để Di chuyển | Cuộn chuột để Phóng to/Thu nhỏ | Nhấp vào hành tinh để chọn
+        Xoay 3D: Giữ chuột/chạm 1 ngón | Di chuyển: Chuột phải/chạm 2 ngón | Phóng to: Cuộn/Vuốt chụm
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -341,10 +381,13 @@
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.maxDistance = 800;
-        controls.minDistance = 5; // Cải tiến: Cho phép camera áp sát cực gần bề mặt hành tinh mẹ
+        controls.minDistance = 5;
 
-        // --- CẤU HÌNH DỊCH CHUYỂN TÂM CAMERA ---
         function updateCameraOffset() {
+            if(window.innerWidth <= 768) {
+                camera.clearViewOffset();
+                return;
+            }
             const panelWidth = 340; 
             const offsetX = -panelWidth / 2;
             
@@ -356,14 +399,12 @@
         camera.position.set(0, 150, 280);
         updateCameraOffset();
 
-        // --- HỆ THỐNG ÁNH SÁNG ---
         const ambientLight = new THREE.AmbientLight(0x333333);
         scene.add(ambientLight);
 
         const sunLight = new THREE.PointLight(0xffffff, 2, 800, 0.5);
         scene.add(sunLight);
 
-        // --- TẠO KHÔNG GIAN SAO NỀN ---
         const starsGeometry = new THREE.BufferGeometry();
         const starsCount = 2000;
         const starPositions = new Float32Array(starsCount * 3);
@@ -379,7 +420,6 @@
         const starField = new THREE.Points(starsGeometry, starsMaterial);
         scene.add(starField);
 
-        // Biến điều khiển
         let isRunning = true;
         let speedMultiplier = 1.0;
         let selectedPlanet = null;
@@ -387,18 +427,15 @@
         let showOrbits = true;
         const orbitLines = [];
 
-        // --- HÀM TẠO NHÃN HTML THỰC TẾ ---
         function createHtmlLabel(id, text, isSun = false, isMoon = false) {
             const div = document.createElement('div');
             div.id = `label-${id}`;
-            // Thêm class chuyên biệt 'moon-label' nếu là vệ tinh con
             div.className = `planet-label ${isSun ? 'sun-label' : ''} ${isMoon ? 'moon-label' : ''}`;
             div.innerText = text;
             labelsContainer.appendChild(div);
             return div;
         }
 
-        // --- THUẬT TOÁN GIẢI PHƯƠNG TRÌNH KEPLER ---
         function solveKepler(M, e) {
             let E = M; 
             const tolerance = 0.000001;
@@ -410,13 +447,14 @@
             return E;
         }
 
-        // --- KHAI BÁO DỮ LIỆU HỆ MẶT TRỜI ---
         const sunData = {
             id: "sun",
             name: "Mặt Trời (Sun)",
             displayName: "Mặt Trời",
             radius: 12,
             color: 0xff7700,
+            physDistance: "0",
+            diameter: "1.392.700 km",
             info: "Ngôi sao ở trung tâm Hệ Mặt Trời, chiếm khoảng 99.86% khối lượng của toàn hệ thống và tỏa nguồn năng lượng lớn nuôi dưỡng Trái Đất."
         };
 
@@ -433,8 +471,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2, 
                 inclination: 0.05,
                 period: "88 ngày",
-                physDistance: "0.39 AU",
-                diameter: "4,879 km",
+                physDistance: "0,39 AU",
+                diameter: "4.879 km",
                 info: "Hành tinh nhỏ nhất và gần Mặt Trời nhất. Quỹ đạo lệch tâm lớn (hình elip dẹt) khiến khoảng cách của nó tới Mặt Trời thay đổi mạnh từ 46 triệu tới 70 triệu km."
             },
             {
@@ -449,8 +487,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.03,
                 period: "225 ngày",
-                physDistance: "0.72 AU",
-                diameter: "12,104 km",
+                physDistance: "0,72 AU",
+                diameter: "12.104 km",
                 info: "Hành tinh nóng nhất Hệ Mặt Trời vì hiệu ứng nhà kính dày đặc giữ lại nhiệt lượng."
             },
             {
@@ -465,8 +503,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0,
                 period: "365 ngày",
-                physDistance: "1.0 AU",
-                diameter: "12,742 km",
+                physDistance: "1,0 AU",
+                diameter: "12.742 km",
                 info: "Hành tinh duy nhất có sự sống và nước dạng lỏng dồi dào trên bề mặt. Trái Đất có vệ tinh tự nhiên nổi tiếng nhất là Mặt Trăng.",
                 moons: [
                     { name: "Mặt Trăng", radius: 0.6, distance: 4.8, speed: 0.04, eccentricity: 0.05, color: 0xd1d5db }
@@ -484,8 +522,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.02,
                 period: "687 ngày",
-                physDistance: "1.52 AU",
-                diameter: "6,779 km",
+                physDistance: "1,52 AU",
+                diameter: "6.779 km",
                 info: "Hành tinh Đỏ giàu oxit sắt. Quỹ đạo hình elip dẹt rõ rệt khiến thời tiết và áp suất bầu khí quyển trên Sao Hoả biến đổi cực kỳ gay gắt giữa các mùa."
             },
             {
@@ -500,9 +538,9 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.01,
                 period: "12 năm",
-                physDistance: "5.2 AU",
-                diameter: "139,820 km",
-                info: "Gã khổng lồ khí lớn nhất Thái Dương Hệ sở hữu lực hấp dẫn hấp dẫn cực đại. Được bao quanh bởi 4 vệ tinh lớn tuyệt đẹp (Io, Europa, Ganymede và Callisto).",
+                physDistance: "5,2 AU",
+                diameter: "139.820 km",
+                info: "Gã khổng lồ khí lớn nhất Thái Dương Hệ. Được bao quanh bởi 4 vệ tinh lớn tuyệt đẹp (Io, Europa, Ganymede và Callisto).",
                 moons: [
                     { name: "Io", radius: 0.45, distance: 7.2, speed: 0.08, eccentricity: 0.01, color: 0xfef08a },
                     { name: "Europa", radius: 0.40, distance: 9.5, speed: 0.05, eccentricity: 0.01, color: 0x93c5fd },
@@ -522,8 +560,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.04,
                 period: "29 năm",
-                physDistance: "9.58 AU",
-                diameter: "116,460 km",
+                physDistance: "9,58 AU",
+                diameter: "116.460 km",
                 hasRings: true,
                 info: "Hành tinh khí có hệ vành đai tráng lệ. Sở hữu vệ tinh lớn thứ hai Hệ Mặt Trời là Titan với bầu khí quyển nitơ dày đặc đặc biệt.",
                 moons: [
@@ -542,8 +580,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.01,
                 period: "84 năm",
-                physDistance: "19.2 AU",
-                diameter: "50,724 km",
+                physDistance: "19,2 AU",
+                diameter: "50.724 km",
                 info: "Người khổng lồ băng xoay ngang dị thường so với quỹ đạo chung của cả hệ."
             },
             {
@@ -558,8 +596,8 @@
                 meanAnomaly: Math.random() * Math.PI * 2,
                 inclination: 0.02,
                 period: "165 năm",
-                physDistance: "30.1 AU",
-                diameter: "49,244 km",
+                physDistance: "30,1 AU",
+                diameter: "49.244 km",
                 info: "Hành tinh xa nhất Hệ Mặt Trời. Sở hữu vệ tinh Triton lớn chạy theo quỹ đạo nghịch hành cực kỳ dị thường.",
                 moons: [
                     { name: "Triton", radius: 0.45, distance: 5.8, speed: -0.04, eccentricity: 0.01, color: 0xa5f3fc } 
@@ -567,16 +605,12 @@
             }
         ];
 
-        // --- KHỞI TẠO ĐỐI TƯỢNG 3D ---
-
-        // 1. Khởi tạo Mặt Trời
         const sunGeometry = new THREE.SphereGeometry(sunData.radius, 32, 32);
         const sunMaterial = new THREE.MeshBasicMaterial({ color: sunData.color });
         const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
         scene.add(sunMesh);
         sunData.mesh = sunMesh;
 
-        // Hào quang
         const glowGeo = new THREE.SphereGeometry(sunData.radius * 1.25, 32, 32);
         const glowMat = new THREE.MeshBasicMaterial({
             color: 0xffaa00,
@@ -589,7 +623,6 @@
 
         sunData.labelEl = createHtmlLabel(sunData.id, sunData.displayName, true);
 
-        // 2. Khởi tạo các Hành tinh & Quỹ đạo vệ tinh con
         planetsData.forEach(planet => {
             const orbitGroup = new THREE.Group();
             orbitGroup.rotation.z = planet.inclination;
@@ -598,7 +631,6 @@
             const b = planet.distance * Math.sqrt(1 - planet.eccentricity ** 2);
             const c = planet.distance * planet.eccentricity;
 
-            // Vẽ quỹ đạo elip của hành tinh mẹ
             const orbitPath = new THREE.BufferGeometry();
             const points = [];
             for (let i = 0; i <= 100; i++) {
@@ -611,7 +643,6 @@
             orbitGroup.add(orbitLine);
             orbitLines.push(orbitLine);
 
-            // Khối cầu hành tinh mẹ
             const planetGeometry = new THREE.SphereGeometry(planet.radius, 32, 32);
             const planetMaterial = new THREE.MeshStandardMaterial({
                 color: planet.color,
@@ -643,14 +674,12 @@
                 planetMesh.add(ringMesh);
             }
 
-            // Tích hợp hệ thống vệ tinh con
             if (planet.moons) {
                 planet.moonObjects = [];
                 planet.moons.forEach(moonData => {
                     const moonSubGroup = new THREE.Group();
                     orbitGroup.add(moonSubGroup); 
 
-                    // Vẽ đường quỹ đạo vệ tinh con
                     const moonOrbitPath = new THREE.BufferGeometry();
                     const mPoints = [];
                     const bMoon = moonData.distance * Math.sqrt(1 - moonData.eccentricity ** 2);
@@ -665,13 +694,11 @@
                     moonSubGroup.add(moonOrbitLine);
                     orbitLines.push(moonOrbitLine);
 
-                    // Khối cầu 3D cho vệ tinh con
                     const moonGeo = new THREE.SphereGeometry(moonData.radius, 16, 16);
                     const moonMat = new THREE.MeshStandardMaterial({ color: moonData.color || 0xd1d5db, roughness: 0.9 });
                     const moonMesh = new THREE.Mesh(moonGeo, moonMat);
                     moonSubGroup.add(moonMesh);
 
-                    // Tạo nhãn tên riêng biệt cho vệ tinh con
                     const moonLabel = createHtmlLabel(planet.id + "_" + moonData.name, moonData.name, false, true);
 
                     planet.moonObjects.push({
@@ -681,13 +708,12 @@
                         angle: Math.random() * Math.PI * 2,
                         semiMinorAxis: bMoon,
                         focusShift: cMoon,
-                        labelEl: moonLabel // Lưu nhãn tên
+                        labelEl: moonLabel
                     });
                 });
             }
         });
 
-        // Điền danh sách chọn nhanh
         const planetSelect = document.getElementById('planet-select');
         
         const sunOption = document.createElement('option');
@@ -702,11 +728,28 @@
             planetSelect.appendChild(option);
         });
 
-        // --- XỬ LÝ RAYCASTER ĐỂ CLICK CHUỘT CHỌN HÀNH TINH ---
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
 
-        window.addEventListener('click', (e) => {
+        // Biến lưu tọa độ lúc nhấn chuột
+        let pointerDownX = 0;
+        let pointerDownY = 0;
+
+        window.addEventListener('pointerdown', (e) => {
+            pointerDownX = e.clientX;
+            pointerDownY = e.clientY;
+        });
+
+        window.addEventListener('pointerup', (e) => {
+            const diffX = Math.abs(e.clientX - pointerDownX);
+            const diffY = Math.abs(e.clientY - pointerDownY);
+
+            // NẾU chuột đã di chuyển > 5px, chứng tỏ là đang Drag (kéo xoay màn hình), 
+            // bỏ qua việc check click chọn/hủy hành tinh.
+            if (diffX > 5 || diffY > 5) {
+                return;
+            }
+
             if (e.target.closest('#control-panel') || e.target.closest('#info-panel') || e.target.closest('#instructions')) {
                 return;
             }
@@ -731,7 +774,6 @@
                     if (matchedPlanet) showInfo(matchedPlanet);
                 }
             } else {
-                // Click vào khoảng không vũ trụ thì bỏ chọn hành tinh và dừng theo dõi hoàn toàn
                 isTracking = false;
                 selectedPlanet = null;
                 planetSelect.value = "";
@@ -739,8 +781,6 @@
                 document.getElementById('info-panel').classList.remove('active');
             }
         });
-
-        // --- CÁC HÀM ĐIỀU KHIỂN & GIAO DIỆN ---
 
         function showInfo(obj) {
             selectedPlanet = obj;
@@ -756,7 +796,7 @@
                 distRow.style.display = "none";
                 periodRow.style.display = "none";
                 diaRow.style.display = "flex";
-                document.getElementById('info-diameter').innerText = "1,392,700 km";
+                document.getElementById('info-diameter').innerText = obj.diameter;
                 btnTrack.style.display = "none";
                 isTracking = false;
                 planetSelect.value = "sun";
@@ -768,7 +808,6 @@
                 document.getElementById('info-period').innerText = obj.period;
                 document.getElementById('info-diameter').innerText = obj.diameter;
                 
-                // Hiển thị và cập nhật nút Theo dõi ở Panel bên trái
                 btnTrack.style.display = "block";
                 btnTrack.innerText = isTracking ? "Dừng theo dõi" : "Theo dõi hành tinh này";
                 planetSelect.value = obj.id;
@@ -823,7 +862,7 @@
         const speedVal = document.getElementById('speed-val');
         speedSlider.addEventListener('input', () => {
             speedMultiplier = parseFloat(speedSlider.value);
-            speedVal.innerText = speedMultiplier.toFixed(1);
+            speedVal.innerText = speedMultiplier.toFixed(1).replace(".", ",");
         });
 
         document.getElementById('chk-orbits').addEventListener('change', (e) => {
@@ -831,7 +870,6 @@
             orbitLines.forEach(line => line.visible = showOrbits);
         });
 
-        // Xử lý click nút Theo dõi nằm ở bảng điều khiển bên trái
         document.getElementById('btn-track').addEventListener('click', () => {
             if (selectedPlanet && selectedPlanet.id !== "sun") {
                 isTracking = !isTracking;
@@ -841,7 +879,6 @@
 
         document.getElementById('btn-close-info').addEventListener('click', closeInfoPanel);
 
-        // --- CHIẾU TỌA ĐỘ NHÃN ---
         const tempV = new THREE.Vector3();
 
         function updateLabelPosition(mesh, labelEl, offsetHeight) {
@@ -862,8 +899,6 @@
             }
         }
 
-        // --- VÒNG LẶP HOẠT ẢNH CHÍNH (Animation Loop) ---
-
         function animate() {
             requestAnimationFrame(animate);
 
@@ -875,7 +910,6 @@
                     planet.mesh.rotation.y += 0.01;
                 }
                 
-                // Thuật toán Kepler chuyển động hành tinh mẹ
                 const E = solveKepler(planet.meanAnomaly, planet.eccentricity);
                 const xLocal = planet.distance * Math.cos(E);
                 const zLocal = planet.semiMinorAxis * Math.sin(E);
@@ -885,7 +919,6 @@
 
                 updateLabelPosition(planet.mesh, planet.labelEl, planet.radius + 1.8);
 
-                // Đồng bộ và chuyển động hệ thống vệ tinh con quanh hành tinh mẹ
                 if (planet.moonObjects) {
                     planet.moonObjects.forEach(mObj => {
                         mObj.subGroup.position.copy(planet.mesh.position);
@@ -902,11 +935,10 @@
                         mObj.mesh.position.x = xmLocal - mObj.focusShift;
                         mObj.mesh.position.z = zmLocal;
 
-                        // CẢI TIẾN: Cập nhật nhãn tên vệ tinh (Chỉ hiển thị khi hành tinh mẹ được chọn!)
                         if (selectedPlanet === planet) {
                             updateLabelPosition(mObj.mesh, mObj.labelEl, mObj.data.radius + 0.8);
                         } else {
-                            mObj.labelEl.style.display = 'none'; // Tự ẩn đi khi không tương tác với hành tinh mẹ
+                            mObj.labelEl.style.display = 'none'; 
                         }
                     });
                 }
@@ -914,7 +946,6 @@
 
             if (isRunning) sunMesh.rotation.y += 0.002;
 
-            // Theo dõi bám sát chuyển động hành tinh
             if (isTracking && selectedPlanet && selectedPlanet.id !== "sun") {
                 const targetPosition = new THREE.Vector3();
                 selectedPlanet.mesh.getWorldPosition(targetPosition);
@@ -926,6 +957,8 @@
         }
 
         window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
             updateCameraOffset();
         });
